@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "type": "admin",
+    "name": "Tom",
+    "login": "tom@mail.com",
+    "password": "tomtom"
+
+  },
+  {
+    "id": 2,
+    "type": "user",
+    "name": "Jerry",
+    "login": "jerry@mail.com",
+    "password": "jerry"
+  },
+  {
+    "id": 3,
+    "type": "guest"
+  }
+]
