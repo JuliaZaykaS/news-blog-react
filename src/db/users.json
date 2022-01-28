@@ -1,6 +1,11 @@
 [
   {
     "id": 1,
+    "type": "guest",
+    "login": "Гость"
+  },
+  {
+    "id": 2,
     "type": "admin",
     "name": "Tom",
     "login": "tom@mail.com",
@@ -8,14 +13,11 @@
 
   },
   {
-    "id": 2,
+    "id": 3,
     "type": "user",
     "name": "Jerry",
     "login": "jerry@mail.com",
     "password": "jerry"
-  },
-  {
-    "id": 3,
-    "type": "guest"
   }
+
 ]

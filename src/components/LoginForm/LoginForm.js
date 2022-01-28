@@ -1,13 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/auth-operations';
+// import { logIn } from '../../redux/auth/auth-operations';
+import { logIn } from '../../redux/auth/auth-slice';
 import { Button } from '../Button/Button';
+import users from '../../db/users.json';
 
-export const LoginForm = () => {
-    const dispatch = useDispatch();
+export const LoginForm = ({closeFunction}) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [wrong, setWrong] = useState(false);
+  // console.log(users);
 
   const onChangeInput = e => {
     const { name, value } = e.currentTarget;
@@ -23,7 +27,17 @@ export const LoginForm = () => {
 
   const onSubmitLogin = e => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
+
+    const findUser = users.find(el=>el.login === email && el.password === password)
+    // const findUser = users.find(el=>console.log(el))
+    // console.log(findUser);
+    if(!findUser) setWrong(true)
+    if(findUser){
+      const {type} = findUser
+      dispatch(logIn({ email, password, type }));
+      setWrong(false)
+      closeFunction()
+    }
     setEmail('');
     setPassword('');
   };
@@ -50,5 +64,8 @@ export const LoginForm = () => {
           ></input>
       </label>
       <Button type={'submit'} title={'Войти'}></Button>
+      {wrong && <p>Неверный логин или пароль</p>
+      }
   </form>;
+
 };

@@ -10,7 +10,7 @@ import { getNews, getFilteredNews, getFilter } from '../../redux/news/news-selec
 export const NewsPage = () => {
   const news = useSelector(getFilteredNews);
   const filteredNews = useSelector(getFilter);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllNews());

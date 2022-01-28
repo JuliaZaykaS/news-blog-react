@@ -1,17 +1,33 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import users from '../../db/users.json';
 // import { register, logIn, logOut, getCurrentUser } from './auth-operations';
+const guest = users[0]
 
-// const authSlice = createSlice({
-//   name: 'auth',
+const authSlice = createSlice({
+  name: 'auth',
 
-//   initialState: {
-//     user: { name: null, email: null, password: null },
-//     token: null,
-//     isLoggedIn: false,
-//     isGetCurrentUser: false,
-//     error: null,
-//     isLoading: false,
-//   },
+  initialState: {
+    // user: { email: guest.login, password: null },
+    user: { email: guest.login, password: null, type: guest.type },
+    // type: "guest",
+    // token: null,
+    isLoggedIn: false,
+    isGetCurrentUser: false,
+    error: null,
+    // isLoading: false,
+  },
+  reducers:{
+    logIn(state, action){
+        state.user = action.payload
+        state.isLoggedIn = true
+        // if(action.payload.email )
+
+    },
+    logOut(state, action){
+      state.user = { email: guest.login, password: null, type: guest.type }
+      state.isLoggedIn = false
+    }
+  },
 //   extraReducers: {
 //     [register.pending](state, action) {
 //       state.error = null;
@@ -70,6 +86,7 @@
 //       state.isLoading = false;
 //     },
 //   },
-// });
+});
 
-// export default authSlice.reducer;
+export default authSlice.reducer;
+export const {logIn, logOut} = authSlice.actions;
