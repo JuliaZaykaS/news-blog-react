@@ -9,6 +9,7 @@ import {
   getFilterNews,
   addNews,
   deleteNews,
+  approveNews,
 } from '../../redux/news/news-slice';
 import {
   getNews,
@@ -43,7 +44,11 @@ export const NewsPage = () => {
     setIsOpen(true);
   };
 
-  const onBtnApproveClick = () => {};
+  const onBtnApproveClick = id => {
+    const findNews = news.find(el => el.id === id);
+    const editedNews = { ...findNews, approved: true };
+    dispatch(approveNews(editedNews));
+  };
 
   const onBtnDeleteClick = id => {
     dispatch(deleteNews(id));

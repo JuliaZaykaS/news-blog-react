@@ -23,10 +23,13 @@ const newsSlice = createSlice({
     deleteNews(state,action){
       state.news = state.news.filter(el => el.id !== action.payload)
 
+    },
+    approveNews(state,action){
+      state.news = [action.payload, ...state.news.filter(({id}) => id!==action.payload.id)]
     }
   },
 
 });
 
 export default newsSlice.reducer;
-export const { getAllNews, getFilterNews, addNews, deleteNews } = newsSlice.actions;
+export const { getAllNews, getFilterNews, addNews, deleteNews, approveNews } = newsSlice.actions;

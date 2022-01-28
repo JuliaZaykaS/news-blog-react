@@ -12,11 +12,14 @@ export const ListItem = ({ item, onBtnApproveClick, onBtnDeleteClick }) => {
       <p>{item.createdAt}</p>
       {isAdmin === 'admin' && (
         <>
+        {
+          !item.approved &&
           <Button
             type={'button'}
             title={'Одобрить'}
             onClick={() => onBtnApproveClick(item.id)}
           ></Button>
+        }
           <Button
             type={'button'}
             title={'Удалить'}
