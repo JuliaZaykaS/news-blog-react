@@ -8,12 +8,14 @@ import {
   getAllNews,
   getFilterNews,
   addNews,
+  deleteNews,
 } from '../../redux/news/news-slice';
 import {
   getNews,
   getFilteredNews,
   getFilter,
 } from '../../redux/news/news-selectors';
+import { getUserType } from '../../redux/auth/auth-selectors';
 import { Button } from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { AddNewsForm } from '../../components/AddNewsForm/AddNewsForm';
@@ -22,8 +24,10 @@ export const NewsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const news = useSelector(getFilteredNews);
   const filteredNews = useSelector(getFilter);
+  const isUser = useSelector(getUserType);
   const dispatch = useDispatch();
 
+  // console.log(isUser);
   useEffect(() => {
     dispatch(getAllNews());
   }, [dispatch]);
@@ -35,20 +39,38 @@ export const NewsPage = () => {
     setIsOpen(isOpen => !isOpen);
   };
 
-  const onBtnAddClick =()=>{
-    setIsOpen(true)
-  }
+  const onBtnAddClick = () => {
+    setIsOpen(true);
+  };
+
+  const onBtnApproveClick = () => {};
+
+  const onBtnDeleteClick = id => {
+    dispatch(deleteNews(id));
+  };
 
   return (
     <Section title="Новости">
-      <Button type={'button'} title={'Добавить новость'} onClick={onBtnAddClick}>Добавить новость</Button>
+      {isUser === 'user' && (
+        <Button
+          type={'button'}
+          title={'Добавить новость'}
+          onClick={onBtnAddClick}
+        >
+          Добавить новость
+        </Button>
+      )}
       {isOpen && (
         <Modal onClose={toggleModal}>
           <AddNewsForm closeFunction={toggleModal}></AddNewsForm>
         </Modal>
       )}
       <Filter value={filteredNews} onFindName={findTitle}></Filter>
-      <List news={news}></List>
+      <List
+        news={news}
+        onBtnDeleteClick={onBtnDeleteClick}
+        onBtnApproveClick={onBtnApproveClick}
+      ></List>
     </Section>
   );
 };
