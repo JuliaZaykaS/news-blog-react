@@ -1,14 +1,14 @@
+import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 import { HomePage } from '../../views/HomePage/HomePage';
 import { Navigation } from '../Navigation/Navigation';
 import Modal from '../Modal/Modal';
 import { LoginForm } from '../LoginForm/LoginForm';
 import { NewsPage } from '../../views/NewsPage/NewsPage';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleModal = e => {
+  const toggleModal = () => {
     setIsOpen(isOpen => !isOpen);
   };
   return (

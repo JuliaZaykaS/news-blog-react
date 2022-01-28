@@ -3,18 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Filter } from '../../components/Filter/Filter';
 import { List } from '../../components/List/List';
 import Section from '../../components/Section/Section';
-// import news from '../../db/news.json'
 import {
   getAllNews,
   getFilterNews,
-  addNews,
   deleteNews,
   approveNews,
 } from '../../redux/news/news-slice';
 import {
-  getNews,
   getFilteredNews,
   getFilter,
+  getApprovedNews,
 } from '../../redux/news/news-selectors';
 import { getUserType } from '../../redux/auth/auth-selectors';
 import { Button } from '../../components/Button/Button';
@@ -23,12 +21,12 @@ import { AddNewsForm } from '../../components/AddNewsForm/AddNewsForm';
 
 export const NewsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const news = useSelector(getFilteredNews);
+  const allNews = useSelector(getFilteredNews);
+  const approvedNews = useSelector(getApprovedNews);
   const filteredNews = useSelector(getFilter);
   const isUser = useSelector(getUserType);
   const dispatch = useDispatch();
 
-  // console.log(isUser);
   useEffect(() => {
     dispatch(getAllNews());
   }, [dispatch]);
@@ -36,7 +34,7 @@ export const NewsPage = () => {
   const findTitle = e => {
     dispatch(getFilterNews(e.target.value));
   };
-  const toggleModal = e => {
+  const toggleModal = () => {
     setIsOpen(isOpen => !isOpen);
   };
 
@@ -45,7 +43,7 @@ export const NewsPage = () => {
   };
 
   const onBtnApproveClick = id => {
-    const findNews = news.find(el => el.id === id);
+    const findNews = allNews.find(el => el.id === id);
     const editedNews = { ...findNews, approved: true };
     dispatch(approveNews(editedNews));
   };
@@ -72,7 +70,7 @@ export const NewsPage = () => {
       )}
       <Filter value={filteredNews} onFindName={findTitle}></Filter>
       <List
-        news={news}
+        news={isUser === 'admin' ? allNews : approvedNews}
         onBtnDeleteClick={onBtnDeleteClick}
         onBtnApproveClick={onBtnApproveClick}
       ></List>

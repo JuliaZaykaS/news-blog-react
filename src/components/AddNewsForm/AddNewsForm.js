@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { addNews } from '../../redux/news/news-slice';
 import { Button } from '../Button/Button';
-import { v4 as uuidv4 } from 'uuid';
 
-
-export const AddNewsForm = ({closeFunction}) => {
+export const AddNewsForm = ({ closeFunction }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onChangeInput = e => {
     const { name, value } = e.currentTarget;
@@ -24,17 +23,16 @@ export const AddNewsForm = ({closeFunction}) => {
 
   const onSubmitNews = e => {
     e.preventDefault();
-    const dateNow = new Date()
-    const createdAt = dateNow.toISOString().slice(0,10)
+    const dateNow = new Date();
+    const createdAt = dateNow.toISOString().slice(0, 10);
 
-
-      dispatch(addNews({ id:uuidv4(),title, text, createdAt, approve:false}));
-      closeFunction()
-
+    dispatch(
+      addNews({ id: uuidv4(), title, text, createdAt, approved: false }),
+    );
+    closeFunction();
     setTitle('');
     setText('');
   };
-
 
   return (
     <form onSubmit={onSubmitNews}>
@@ -49,14 +47,14 @@ export const AddNewsForm = ({closeFunction}) => {
         ></input>
       </label>
       <label>
-        <input
+        <textarea
           type="text"
           placeholder="Enter text"
           name="text"
           required
           value={text}
           onChange={onChangeInput}
-        ></input>
+        ></textarea>
       </label>
       <Button type={'submit'} title={'Добавить'}></Button>
     </form>

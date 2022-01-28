@@ -9,7 +9,6 @@ import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
 export const Navigation = ({onClickEnterBtn}) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
-  // const onClickEnterBtn = () => {};
 
   const onClickExitBtn = () => {
     dispatch(logOut());
@@ -28,9 +27,6 @@ export const Navigation = ({onClickEnterBtn}) => {
       ) : (
         <Button type="button" title="Вход" onClick={onClickEnterBtn}></Button>
       )}
-      {/* <NavLink to="/login">
-    <span>Войти</span>
-  </NavLink> */}
     </nav>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Button } from '../Button/Button';
 import { getUserType } from '../../redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
 
 export const ListItem = ({ item, onBtnApproveClick, onBtnDeleteClick }) => {
   const isAdmin = useSelector(getUserType);
@@ -12,14 +12,13 @@ export const ListItem = ({ item, onBtnApproveClick, onBtnDeleteClick }) => {
       <p>{item.createdAt}</p>
       {isAdmin === 'admin' && (
         <>
-        {
-          !item.approved &&
-          <Button
-            type={'button'}
-            title={'Одобрить'}
-            onClick={() => onBtnApproveClick(item.id)}
-          ></Button>
-        }
+          {!item.approved && (
+            <Button
+              type={'button'}
+              title={'Одобрить'}
+              onClick={() => onBtnApproveClick(item.id)}
+            ></Button>
+          )}
           <Button
             type={'button'}
             title={'Удалить'}

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import users from '../../db/users.json';
+
 const guest = users[0]
 
 const authSlice = createSlice({
@@ -8,14 +9,13 @@ const authSlice = createSlice({
   initialState: {
     user: { email: guest.login, password: null, type: guest.type },
     isLoggedIn: false,
-    isGetCurrentUser: false,
   },
   reducers:{
     logIn(state, action){
         state.user = action.payload
         state.isLoggedIn = true
     },
-    logOut(state, action){
+    logOut(state, _){
       state.user = { email: guest.login, password: null, type: guest.type }
       state.isLoggedIn = false
     }

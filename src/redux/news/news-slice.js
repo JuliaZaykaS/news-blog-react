@@ -7,11 +7,9 @@ const newsSlice = createSlice({
   initialState: {
     news: [],
     filteredNews: '',
-    error: null,
-    isLoading: false,
   },
   reducers: {
-    getAllNews(state, action) {
+    getAllNews(state, _) {
       state.news = [...news]
     },
     getFilterNews(state, action){

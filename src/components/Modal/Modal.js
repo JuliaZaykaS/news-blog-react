@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 const modal = document.querySelector('#modal-root');
 
-export default function Modal({ onClose, clearModal, children }) {
+export default function Modal({ onClose, children }) {
   useEffect(() => {
     window.addEventListener('keydown', onEscClick);
     return () => {

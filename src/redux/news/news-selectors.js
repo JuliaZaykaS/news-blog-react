@@ -13,4 +13,14 @@ export const getFilteredNews = createSelector(
       });
     },
   );
+export const getApprovedNews = createSelector(
+    [getNews, getFilter],
+    (news, filteredNews) => {
+      const normalizedFilteredTitle = filteredNews.toLowerCase();
+
+      return news.filter(el =>{
+        return (el.title.toLowerCase().includes(normalizedFilteredTitle) && el.approved === true)
+      });
+    },
+  );
 
