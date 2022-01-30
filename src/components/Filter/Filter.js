@@ -1,11 +1,13 @@
 import React from 'react';
+import './Filter.scss'
 
 export const Filter = ({ filter, onFindName }) => {
   return (
-    <>
-      <label>
-        Find news by title
+    <div className='filter'>
+      <label className='filter__label'>
+        <span className='filter__label-text'>Find news by title</span>
         <input
+        className='filter__input'
           placeholder="news title"
           type="text"
           name="filter"
@@ -13,6 +15,6 @@ export const Filter = ({ filter, onFindName }) => {
           onChange={onFindName}
         />
       </label>
-    </>
+    </div>
   );
 };

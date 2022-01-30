@@ -1,7 +1,9 @@
+import './Section.scss';
+
 export default function Section({ title, children }) {
     return (
-      <div>
-        <h1>{title}</h1>
+      <div className="section">
+        <h1 className="section__title">{title}</h1>
         {children}
       </div>
     );

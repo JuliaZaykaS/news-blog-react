@@ -18,6 +18,7 @@ import { getUserType } from '../../redux/auth/auth-selectors';
 import { Button } from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { AddNewsForm } from '../../components/AddNewsForm/AddNewsForm';
+import './NewsPage.scss';
 
 export const NewsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,6 +57,7 @@ export const NewsPage = () => {
     <Section title="Новости">
       {isUser === 'user' && (
         <Button
+        className='news-page__btn'
           type={'button'}
           title={'Добавить новость'}
           onClick={onBtnAddClick}

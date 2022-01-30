@@ -1,0 +1,28 @@
+.list-item{
+border: 2px solid rgb(216, 241, 247);
+width: 100%;
+padding: 20px;
+color: rgb(2, 52, 61);
+@media screen and (min-width: 1200px){
+width: 50%;
+}
+}
+
+.list-item__title{
+font-weight: 900;
+
+}
+
+.list-item__text{
+font-style: italic;
+text-indent: 10px;
+word-wrap:break-word;
+}
+
+.list-item__date{
+font-weight: 700;
+}
+
+.list-item__btn{
+    margin-right: 10px;
+}

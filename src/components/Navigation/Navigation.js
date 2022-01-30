@@ -5,21 +5,26 @@ import { NavLink } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import { logOut } from '../../redux/auth/auth-slice';
 import { getIsLoggedIn } from '../../redux/auth/auth-selectors';
+import Icon from '../../images/icon.svg'
+import './Navigation.scss'
 
 export const Navigation = ({onClickEnterBtn}) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
+
+  const setActiveClass = ({ isActive }) =>
+  'navigation__link' + (isActive ? ' navigation__link--active' : '');
 
   const onClickExitBtn = () => {
     dispatch(logOut());
   };
 
   return (
-    <nav>
-      <NavLink to="/">
-        <span>Главная</span>
+    <nav className='navigation'>
+      <NavLink to="/" className='navigation__link'>
+        <img src={Icon} alt='logo'/>
       </NavLink>
-      <NavLink to="/news">
+      <NavLink to="/news" className={setActiveClass}>
         <span>Новости</span>
       </NavLink>
       {isLoggedIn ? (

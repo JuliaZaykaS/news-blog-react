@@ -1,0 +1,11 @@
+.list{
+    list-style: none;
+   padding: 10px;
+   display: flex;
+flex-direction: column;
+@media screen and (min-width: 1200px){
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+}

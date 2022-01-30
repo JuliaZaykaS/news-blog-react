@@ -1,0 +1,39 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 1200px){
+        width: 300px;
+    }
+
+}
+
+.login-form__label{
+margin-bottom: 10px;
+width: 100%;
+}
+
+.login-form__input{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid rgb(6, 14, 138);
+    border-radius: 5px;
+    outline-color: rgb(170, 3, 128);
+    color: rgb(6, 14, 138);
+    background-color: rgb(216, 241, 247);
+
+}
+
+.login-form__input::placeholder{
+    color: rgb(170, 3, 128);
+}
+
+.login-form__btn{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.login-form__info{
+color: rgb(247, 117, 117);
+font-weight: 900;
+}

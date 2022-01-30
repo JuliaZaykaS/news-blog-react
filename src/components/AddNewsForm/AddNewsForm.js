@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addNews } from '../../redux/news/news-slice';
 import { Button } from '../Button/Button';
+import './AddNewsForm.scss';
 
 export const AddNewsForm = ({ closeFunction }) => {
   const [title, setTitle] = useState('');
@@ -35,9 +36,10 @@ export const AddNewsForm = ({ closeFunction }) => {
   };
 
   return (
-    <form onSubmit={onSubmitNews}>
-      <label>
+    <form onSubmit={onSubmitNews} className='add-news-form'>
+      <label className='add-news-form__label'>
         <input
+        className='add-news-form__input'
           type="text"
           placeholder="Enter title"
           name="title"
@@ -46,8 +48,9 @@ export const AddNewsForm = ({ closeFunction }) => {
           onChange={onChangeInput}
         ></input>
       </label>
-      <label>
+      <label className='add-news-form__label'>
         <textarea
+        className='add-news-form__textarea'
           type="text"
           placeholder="Enter text"
           name="text"
@@ -56,7 +59,7 @@ export const AddNewsForm = ({ closeFunction }) => {
           onChange={onChangeInput}
         ></textarea>
       </label>
-      <Button type={'submit'} title={'Добавить'}></Button>
+      <Button type={'submit'} title={'Добавить'} className='add-news-form__btn'></Button>
     </form>
   );
 };

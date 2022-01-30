@@ -1,9 +1,10 @@
 import React from 'react';
 import { ListItem } from '../ListItem/ListItem';
+import './List.scss';
 
 export const List = ({ news, onBtnApproveClick, onBtnDeleteClick }) => {
   return (
-    <ul>
+    <ul className='list'>
       {news.map(el => (
         <ListItem
           key={el.id}

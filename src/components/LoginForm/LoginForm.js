@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/auth-slice';
 import { Button } from '../Button/Button';
 import users from '../../db/users.json';
+import './LoginForm.scss';
 
 export const LoginForm = ({ closeFunction }) => {
   const dispatch = useDispatch();
@@ -42,9 +43,10 @@ export const LoginForm = ({ closeFunction }) => {
   };
 
   return (
-    <form onSubmit={onSubmitLogin}>
-      <label>
+    <form onSubmit={onSubmitLogin} className='login-form'>
+      <label className='login-form__label'>
         <input
+        className='login-form__input'
           type="email"
           placeholder="Enter email"
           name="email"
@@ -53,8 +55,9 @@ export const LoginForm = ({ closeFunction }) => {
           onChange={onChangeInput}
         ></input>
       </label>
-      <label>
+      <label className='login-form__label'>
         <input
+        className='login-form__input'
           type="password"
           placeholder="Enter password"
           name="password"
@@ -63,8 +66,8 @@ export const LoginForm = ({ closeFunction }) => {
           onChange={onChangeInput}
         ></input>
       </label>
-      <Button type={'submit'} title={'Войти'}></Button>
-      {wrong && <p>Неверный логин или пароль</p>}
+      <Button type={'submit'} title={'Войти'} className='login-form__btn'></Button>
+      {wrong && <p className='login-form__info'>Неверный логин или пароль</p>}
     </form>
   );
 };
